@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "api": "apps/api"
+    "api": "apps/api",
+    "fe-web": "apps/fe-web",
+    "fe-web-e2e": "apps/fe-web-e2e"
   }
 }
