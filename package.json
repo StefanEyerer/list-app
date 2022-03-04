@@ -5,9 +5,23 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "format:check": "nx format:check",
+    "format:write": "nx format:write",
+    "lint": "nx lint",
+    "test": "nx test",
+    "run-many": "nx run-many"
   },
   "private": true,
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "express": "4.17.2",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.67.2",
+    "regenerator-runtime": "0.13.7",
+    "tslib": "^2.0.0"
+  },
   "devDependencies": {
     "@nrwl/cli": "13.8.3",
     "@nrwl/cypress": "13.8.3",
@@ -65,16 +79,5 @@
     "react-test-renderer": "17.0.2",
     "ts-jest": "27.0.5",
     "typescript": "~4.5.2"
-  },
-  "dependencies": {
-    "@nrwl/next": "13.8.3",
-    "core-js": "^3.6.5",
-    "express": "4.17.2",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-native": "0.67.2",
-    "regenerator-runtime": "0.13.7",
-    "tslib": "^2.0.0"
   }
 }

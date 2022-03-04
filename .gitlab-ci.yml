@@ -1,0 +1,64 @@
+image: node:16.14.0-alpine3.14
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .npm/
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
+
+stages:
+  - build
+  - code-quality
+  - package
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm run run-many -- --target=build --all
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  artifacts:
+    paths:
+      - dist/apps
+
+formatting:
+  stage: code-quality
+  script:
+    - npm run format:check
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+linting:
+  stage: code-quality
+  script:
+    - npm run run-many -- --target=lint --all
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+test:
+  stage: code-quality
+  script:
+    - npm run run-many -- --target=test --all
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+package:
+  stage: package
+  script:
+    - echo "package"
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+
+deploy:
+  stage: deploy
+  script:
+    - echo "deploy"
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
