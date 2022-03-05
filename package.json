@@ -9,10 +9,12 @@
     "format:write": "nx format:write",
     "lint": "nx lint",
     "test": "nx test",
-    "run-many": "nx run-many"
+    "nx-run": "nx run",
+    "nx-run-many": "nx run-many"
   },
   "private": true,
   "dependencies": {
+    "@nrwl/next": "13.8.3",
     "core-js": "^3.6.5",
     "express": "4.17.2",
     "next": "12.1.0",
