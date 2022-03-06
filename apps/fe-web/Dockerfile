@@ -19,5 +19,7 @@ COPY --chown=node:node --from=build /app/dist/apps/fe-web /app
 COPY --chown=node:node package-lock.json /app
 RUN npm ci --ignore-scripts --include=dev
 
+ENV PORT 8002
+EXPOSE 8002
 USER node
 CMD ["dumb-init", "npm", "run", "start"]

@@ -20,5 +20,7 @@ COPY --chown=node:node package.json /app
 COPY --chown=node:node package-lock.json /app
 RUN npm ci --ignore-scripts
 
+ENV PORT 8001
+EXPOSE 8001
 USER node
 CMD ["dumb-init", "node", "main.js"]
