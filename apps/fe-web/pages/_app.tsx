@@ -5,7 +5,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to fe-web!</title>
+        <title>List App</title>
       </Head>
       <main className="app">
         <Component {...pageProps} />
