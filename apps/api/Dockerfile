@@ -1,23 +1,13 @@
-# BUILD STAGE
-FROM node:16.14.0-alpine3.15 AS build
-
-WORKDIR /app
-COPY . .
-
-RUN npm ci --ignore-scripts
-RUN npm run nx-run -- api:build:production --skip-nx-cache
-
-# PROD STAGE
-FROM node:16.14.0-alpine3.15 AS prod
+FROM node:16.14.0-alpine3.15
 
 ENV NODE_ENV production
 
 RUN apk update && apk add dumb-init
 
 WORKDIR /app
-COPY --chown=node:node --from=build /app/dist/apps/api /app
-COPY --chown=node:node package.json /app
-COPY --chown=node:node package-lock.json /app
+COPY --chown=node:node dist/apps/api .
+COPY --chown=node:node package.json .
+COPY --chown=node:node package-lock.json .
 RUN npm ci --ignore-scripts
 
 ENV PORT 8001

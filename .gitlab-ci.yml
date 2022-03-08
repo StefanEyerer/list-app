@@ -1,13 +1,5 @@
 image: node:16.14.0-alpine3.15
 
-cache:
-  key: $CI_COMMIT_REF_SLUG
-  paths:
-    - .npm/
-
-before_script:
-  - npm ci --cache .npm --prefer-offline
-
 stages:
   - build
   - code-quality
@@ -16,14 +8,29 @@ stages:
 
 build:
   stage: build
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
   script:
     - npm run nx-run-many -- --target=build --configuration=production --all
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  artifacts:
+    paths:
+      - dist/apps
 
 format:
   stage: code-quality
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
   script:
     - npm run format:check
   rules:
@@ -32,6 +39,12 @@ format:
 
 lint:
   stage: code-quality
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
   script:
     - npm run nx-run-many -- --target=lint --all
   rules:
@@ -40,6 +53,12 @@ lint:
 
 test:
   stage: code-quality
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
   script:
     - npm run nx-run-many -- --target=test --all
   rules:
@@ -72,7 +91,6 @@ package fe-web:
 
 deploy:
   stage: deploy
-  before_script: []
   script:
     - echo "deploy"
   rules:
