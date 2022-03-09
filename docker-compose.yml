@@ -1,0 +1,18 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    ports:
+      - '8001:8001'
+    env_file:
+      - ./apps/api/.env
+  frontend:
+    build:
+      context: .
+      dockerfile: ./apps/fe-web/Dockerfile
+    ports:
+      - '8002:8002'
+    env_file:
+      - ./apps/fe-web/.env
