@@ -1,5 +1,11 @@
-export function Index() {
-  return <div>Hello World!</div>;
-}
+import { Box, Container, Typography } from '@mui/material';
 
-export default Index;
+export default function Index() {
+  return (
+    <Container>
+      <Box>
+        <Typography>Hello World</Typography>
+      </Box>
+    </Container>
+  );
+}
