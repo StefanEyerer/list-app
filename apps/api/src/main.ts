@@ -10,7 +10,7 @@ async function startUp(): Promise<void> {
   try {
     await mongoose.connect(databaseUrl);
     app.listen(port, () => {
-      console.log(`Listening at http://localhost:${port}/api`);
+      console.log(`App listening on port ${port}`);
     });
   } catch (error) {
     console.error(`An error has occured: ${error}`);

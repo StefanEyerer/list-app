@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@list-app/api/lists/feature": ["libs/api/lists/feature/src/index.ts"],
+      "@list-app/api/public/feature": ["libs/api/public/feature/src/index.ts"],
+      "@list-app/api/shares/feature": ["libs/api/shares/feature/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

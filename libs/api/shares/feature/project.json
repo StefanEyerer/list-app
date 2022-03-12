@@ -1,0 +1,32 @@
+{
+  "root": "libs/api/shares/feature",
+  "sourceRoot": "libs/api/shares/feature/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/shares/feature",
+        "main": "libs/api/shares/feature/src/index.ts",
+        "tsConfig": "libs/api/shares/feature/tsconfig.lib.json",
+        "assets": ["libs/api/shares/feature/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/shares/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/shares/feature"],
+      "options": {
+        "jestConfig": "libs/api/shares/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

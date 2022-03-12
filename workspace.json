@@ -2,6 +2,9 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-lists-feature": "libs/api/lists/feature",
+    "api-public-feature": "libs/api/public/feature",
+    "api-shares-feature": "libs/api/shares/feature",
     "fe-mobile": "apps/fe-mobile",
     "fe-mobile-e2e": "apps/fe-mobile-e2e",
     "fe-web": "apps/fe-web",
