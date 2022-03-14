@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'node',
   displayName: 'api-lists-feature',
   preset: '../../../../jest.preset.js',
   globals: {

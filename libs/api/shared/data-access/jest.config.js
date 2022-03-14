@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'node',
   displayName: 'api-shared-data-access',
   preset: '../../../../jest.preset.js',
   globals: {

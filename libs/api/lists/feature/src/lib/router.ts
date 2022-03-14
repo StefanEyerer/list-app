@@ -1,10 +1,10 @@
 import * as express from 'express';
+import { handleCreateList } from './controllers/handle-create-list';
+import { validateCreateList } from './validators/validate-create-list';
 
 const listsRouter = express.Router();
 
-listsRouter.post('/', (req, res) => {
-  res.json({ message: 'listsRouter: POST /' });
-});
+listsRouter.post('/', validateCreateList(), handleCreateList);
 
 listsRouter.get('/', (req, res) => {
   res.json({ message: 'listsRouter: GET /' });
