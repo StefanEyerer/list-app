@@ -2,7 +2,7 @@ import { ListModel } from '@list-app/api/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
-export async function handleCreateList(
+export async function handleUpdateList(
   req: Request,
   res: Response
 ): Promise<void> {
@@ -13,14 +13,25 @@ export async function handleCreateList(
   }
 
   try {
-    const list = await new ListModel({ ...req.body }).save();
+    const id = req.params['id'];
+    const list = await ListModel.findByIdAndUpdate(
+      id,
+      { ...req.body },
+      { new: true }
+    );
+
+    if (!list) {
+      res.status(404).json({ error: 'list not found' });
+      return;
+    }
+
     const responsePayload = {
       id: list.get('id', String),
       name: list.get('name', String),
       description: list.get('description', String),
       items: list.get('items', Array),
     };
-    res.status(201).json(responsePayload);
+    res.status(200).json(responsePayload);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
