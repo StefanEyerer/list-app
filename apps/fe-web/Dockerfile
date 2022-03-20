@@ -1,4 +1,4 @@
-FROM node:16.14.0-alpine3.15
+FROM node:16.14.2-alpine3.15
 
 ENV NODE_ENV production
 
@@ -12,4 +12,5 @@ RUN npm ci --ignore-scripts --include=dev
 ENV PORT 8002
 EXPOSE 8002
 USER node
-CMD ["dumb-init", "npm", "run", "start"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["npm", "run", "start"]
