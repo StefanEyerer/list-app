@@ -1,0 +1,23 @@
+{
+  "root": "libs/fe-web/shares/feature",
+  "sourceRoot": "libs/fe-web/shares/feature/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/fe-web/shares/feature/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/fe-web/shares/feature"],
+      "options": {
+        "jestConfig": "libs/fe-web/shares/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

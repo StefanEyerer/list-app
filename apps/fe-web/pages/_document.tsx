@@ -6,7 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import createEmotionCache from '../utils/createEmotionCache';
+import createEmotionCache from '../utils/create-emotion-cache';
 import theme from '../utils/theme';
 
 export default function MyDocument({ emotionStyleTags }) {
