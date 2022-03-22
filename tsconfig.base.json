@@ -27,6 +27,7 @@
       "@list-app/fe-web/public/feature": [
         "libs/fe-web/public/feature/src/index.ts"
       ],
+      "@list-app/fe-web/shared/ui": ["libs/fe-web/shared/ui/src/index.ts"],
       "@list-app/fe-web/shares/feature": [
         "libs/fe-web/shares/feature/src/index.ts"
       ]
