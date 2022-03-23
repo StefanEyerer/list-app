@@ -3,15 +3,18 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 
 export function Footer() {
   return (
-    <Box component="footer" position="static" marginTop={'auto'}>
+    <Box component={'footer'} position={'static'} marginTop={'auto'}>
       <Typography
         display={'flex'}
         alignItems={'center'}
         justifyContent={'center'}
-        variant="h6"
-        gutterBottom
+        borderTop={1}
+        paddingY={2}
+        variant={'body1'}
       >
-        <CopyrightIcon sx={{ mr: 1 }} /> 2022 - Stefan Eyerer
+        Copyright
+        <CopyrightIcon fontSize={'small'} sx={{ mx: 1 }} />
+        Stefan Eyerer 2022
       </Typography>
     </Box>
   );
