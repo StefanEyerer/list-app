@@ -1,11 +1,2 @@
-import { Box, Container, Typography } from '@mui/material';
-
-export default function Index() {
-  return (
-    <Container>
-      <Box>
-        <Typography>Hello World</Typography>
-      </Box>
-    </Container>
-  );
-}
+import { AllLists } from '@list-app/fe-web/lists/feature';
+export default AllLists;
