@@ -13,6 +13,7 @@
     "fe-web-lists-feature": "libs/fe-web/lists/feature",
     "fe-web-public-feature": "libs/fe-web/public/feature",
     "fe-web-shared-ui": "libs/fe-web/shared/ui",
-    "fe-web-shares-feature": "libs/fe-web/shares/feature"
+    "fe-web-shares-feature": "libs/fe-web/shares/feature",
+    "shared-api-interfaces": "libs/shared/api-interfaces"
   }
 }

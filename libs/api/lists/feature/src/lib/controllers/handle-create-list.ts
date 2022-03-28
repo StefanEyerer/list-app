@@ -1,4 +1,5 @@
 import { ListModel } from '@list-app/api/shared/data-access';
+import { List } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
@@ -14,7 +15,7 @@ export async function handleCreateList(
 
   try {
     const list = await new ListModel({ ...req.body }).save();
-    const responsePayload = {
+    const responsePayload: List = {
       id: list.get('id', String),
       name: list.get('name', String),
       description: list.get('description', String),

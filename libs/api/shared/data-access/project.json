@@ -2,16 +2,6 @@
   "root": "libs/api/shared/data-access",
   "sourceRoot": "libs/api/shared/data-access/src",
   "targets": {
-    "build": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/api/shared/data-access",
-        "main": "libs/api/shared/data-access/src/index.ts",
-        "tsConfig": "libs/api/shared/data-access/tsconfig.lib.json",
-        "assets": ["libs/api/shared/data-access/*.md"]
-      }
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

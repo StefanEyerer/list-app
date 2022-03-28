@@ -1,4 +1,5 @@
 import { ListModel } from '@list-app/api/shared/data-access';
+import { Lists } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
 
 export async function handleReadLists(
@@ -7,7 +8,7 @@ export async function handleReadLists(
 ): Promise<void> {
   try {
     const lists = await ListModel.find();
-    const responsePayload = {
+    const responsePayload: Lists = {
       items: [
         ...lists.map((list) => {
           return {

@@ -30,6 +30,9 @@
       "@list-app/fe-web/shared/ui": ["libs/fe-web/shared/ui/src/index.ts"],
       "@list-app/fe-web/shares/feature": [
         "libs/fe-web/shares/feature/src/index.ts"
+      ],
+      "@list-app/shared/api-interfaces": [
+        "libs/shared/api-interfaces/src/index.ts"
       ]
     }
   },
