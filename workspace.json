@@ -14,6 +14,7 @@
     "fe-web-public-feature": "libs/fe-web/public/feature",
     "fe-web-shared-ui": "libs/fe-web/shared/ui",
     "fe-web-shares-feature": "libs/fe-web/shares/feature",
-    "shared-api-interfaces": "libs/shared/api-interfaces"
+    "shared-api-interfaces": "libs/shared/api-interfaces",
+    "shared-frontend-data-access": "libs/shared/frontend/data-access"
   }
 }

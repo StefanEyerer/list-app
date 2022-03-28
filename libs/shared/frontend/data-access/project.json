@@ -1,0 +1,15 @@
+{
+  "root": "libs/shared/frontend/data-access",
+  "sourceRoot": "libs/shared/frontend/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/frontend/data-access/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

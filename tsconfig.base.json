@@ -33,6 +33,9 @@
       ],
       "@list-app/shared/api-interfaces": [
         "libs/shared/api-interfaces/src/index.ts"
+      ],
+      "@list-app/shared/frontend/data-access": [
+        "libs/shared/frontend/data-access/src/index.ts"
       ]
     }
   },
