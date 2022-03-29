@@ -1,7 +1,11 @@
+import { CreateListContent } from '../lib/create-list/create-list-content';
+import { CreateListHeader } from '../lib/create-list/create-list-header';
+
 export function CreateList() {
   return (
-    <div>
-      <h1>Welcome to Create List!</h1>
-    </div>
+    <>
+      <CreateListHeader />
+      <CreateListContent />
+    </>
   );
 }
