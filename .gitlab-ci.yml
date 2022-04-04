@@ -56,11 +56,11 @@ package api:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $CI_REGISTRY_IMAGE/api:$CI_COMMIT_SHORT_SHA -t $CI_REGISTRY_IMAGE/api:latest -f ./apps/api/Dockerfile .
+    - docker build -t $CI_REGISTRY_IMAGE/list-app-api:$CI_COMMIT_SHORT_SHA -t $CI_REGISTRY_IMAGE/list-app-api:latest -f ./apps/api/Dockerfile .
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
 
-package fe-web:
+package web:
   stage: package
   image: docker:20.10.12
   services:
@@ -69,7 +69,7 @@ package fe-web:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $CI_REGISTRY_IMAGE/fe-web:$CI_COMMIT_SHORT_SHA -t $CI_REGISTRY_IMAGE/fe-web:latest -f ./apps/fe-web/Dockerfile .
+    - docker build -t $CI_REGISTRY_IMAGE/list-app-web:$CI_COMMIT_SHORT_SHA -t $CI_REGISTRY_IMAGE/list-app-web:latest -f ./apps/web/Dockerfile .
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
 

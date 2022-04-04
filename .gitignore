@@ -95,4 +95,4 @@ buck-out/
 
 node_modules/
 
-apps/fe-mobile-e2e/artifacts
+apps/mobile-e2e/artifacts

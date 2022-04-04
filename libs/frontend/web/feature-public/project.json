@@ -1,0 +1,25 @@
+{
+  "root": "libs/frontend/web/feature-public",
+  "sourceRoot": "libs/frontend/web/feature-public/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend/web/feature-public/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/frontend/web/feature-public"],
+      "options": {
+        "jestConfig": "libs/frontend/web/feature-public/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import * as express from 'express';
-import { listsRouter } from '@list-app/api/lists/feature';
-import { publicRouter } from '@list-app/api/public/feature';
-import { sharesRouter } from '@list-app/api/shares/feature';
+import { listsRouter } from '@list-app/backend-feature-lists';
+import { publicRouter } from '@list-app/backend-feature-public';
+import { sharesRouter } from '@list-app/backend-feature-shares';
 
 const apiRouter = express.Router();
 

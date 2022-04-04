@@ -15,30 +15,38 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@list-app/api/lists/feature": ["libs/api/lists/feature/src/index.ts"],
-      "@list-app/api/public/feature": ["libs/api/public/feature/src/index.ts"],
-      "@list-app/api/shared/auth/feature": [
-        "libs/api/shared/auth/feature/src/index.ts"
+      "@list-app/backend-feature-lists": [
+        "libs/backend/feature-lists/src/index.ts"
       ],
-      "@list-app/api/shared/data-access": [
-        "libs/api/shared/data-access/src/index.ts"
+      "@list-app/backend-feature-public": [
+        "libs/backend/feature-public/src/index.ts"
       ],
-      "@list-app/api/shares/feature": ["libs/api/shares/feature/src/index.ts"],
-      "@list-app/fe-web/lists/feature": [
-        "libs/fe-web/lists/feature/src/index.ts"
+      "@list-app/backend-feature-shares": [
+        "libs/backend/feature-shares/src/index.ts"
       ],
-      "@list-app/fe-web/public/feature": [
-        "libs/fe-web/public/feature/src/index.ts"
+      "@list-app/backend-shared-data-access": [
+        "libs/backend/shared/data-access/src/index.ts"
       ],
-      "@list-app/fe-web/shared/ui": ["libs/fe-web/shared/ui/src/index.ts"],
-      "@list-app/fe-web/shares/feature": [
-        "libs/fe-web/shares/feature/src/index.ts"
+      "@list-app/backend-shared-feature-auth": [
+        "libs/backend/shared/feature-auth/src/index.ts"
+      ],
+      "@list-app/frontend-shared-data-access": [
+        "libs/frontend/shared/data-access/src/index.ts"
+      ],
+      "@list-app/frontend-web-feature-lists": [
+        "libs/frontend/web/feature-lists/src/index.ts"
+      ],
+      "@list-app/frontend-web-feature-public": [
+        "libs/frontend/web/feature-public/src/index.ts"
+      ],
+      "@list-app/frontend-web-feature-shares": [
+        "libs/frontend/web/feature-shares/src/index.ts"
+      ],
+      "@list-app/frontend-web-shared-ui": [
+        "libs/frontend/web/shared/ui/src/index.ts"
       ],
       "@list-app/shared/api-interfaces": [
         "libs/shared/api-interfaces/src/index.ts"
-      ],
-      "@list-app/shared/frontend/data-access": [
-        "libs/shared/frontend/data-access/src/index.ts"
       ]
     }
   },

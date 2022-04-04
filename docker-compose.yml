@@ -11,8 +11,8 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./apps/fe-web/Dockerfile
+      dockerfile: ./apps/web/Dockerfile
     ports:
       - '8002:8002'
     env_file:
-      - ./apps/fe-web/.env
+      - ./apps/web/.env

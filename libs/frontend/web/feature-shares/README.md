@@ -1,0 +1,7 @@
+# frontend-web-feature-shares
+
+This library was generated with [Nx](https://nx.dev).
+
+## Running unit tests
+
+Run `nx test frontend-web-feature-shares` to execute the unit tests via [Jest](https://jestjs.io).

@@ -1,0 +1,22 @@
+{
+  "root": "libs/backend/feature-shares",
+  "sourceRoot": "libs/backend/feature-shares/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/backend/feature-shares/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/backend/feature-shares"],
+      "options": {
+        "jestConfig": "libs/backend/feature-shares/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

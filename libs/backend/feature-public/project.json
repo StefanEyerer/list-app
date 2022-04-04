@@ -1,0 +1,22 @@
+{
+  "root": "libs/backend/feature-public",
+  "sourceRoot": "libs/backend/feature-public/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/backend/feature-public/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/backend/feature-public"],
+      "options": {
+        "jestConfig": "libs/backend/feature-public/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
