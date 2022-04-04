@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { List } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
@@ -14,12 +15,14 @@ export async function handleCreateList(
   }
 
   try {
-    const list = await new ListModel({ ...req.body }).save();
+    const userId = (req as any)['userId'];
+    const list = await new ListModel({ ...req.body, user: userId }).save();
     const responsePayload: List = {
       id: list.get('id', String),
       name: list.get('name', String),
       description: list.get('description', String),
       items: list.get('items', Array),
+      userId: list.get('user', String),
     };
     res.status(201).json(responsePayload);
   } catch (error) {

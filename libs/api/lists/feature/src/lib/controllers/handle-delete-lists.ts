@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
@@ -13,8 +14,9 @@ export async function handleDeleteLists(
   }
 
   try {
+    const userId = (req as any)['userId'];
     const ids = req.body['ids'];
-    await ListModel.deleteMany({ _id: { $in: ids } });
+    await ListModel.deleteMany({ _id: { $in: ids }, user: userId });
     res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });

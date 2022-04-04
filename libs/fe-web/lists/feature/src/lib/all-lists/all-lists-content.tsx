@@ -13,6 +13,7 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { KeyedMutator } from 'swr';
 
@@ -23,9 +24,11 @@ interface AllListsContentProps {
 
 export function AllListsContent({ lists, mutate }: AllListsContentProps) {
   const router = useRouter();
+  const session = useSession();
+  const id_token = session.data?.['id_token'] as string;
 
   const handleDeleteList = (id: string) => {
-    deleteList(id).then(() => {
+    deleteList(id, id_token).then(() => {
       mutate();
     });
   };

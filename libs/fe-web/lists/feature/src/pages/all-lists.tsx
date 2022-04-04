@@ -1,10 +1,13 @@
 import { useLists } from '@list-app/shared/frontend/data-access';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { signIn, useSession } from 'next-auth/react';
 import { AllListsContent } from '../lib/all-lists/all-lists-content';
 import { AllListsHeader } from '../lib/all-lists/all-lists-header';
 
 export function AllLists() {
-  const { lists, isError, isLoading, mutate } = useLists();
+  const session = useSession();
+  const id_token = session.data?.['id_token'] as string;
+  const { lists, isError, isLoading, mutate } = useLists(id_token);
 
   if (isLoading) {
     return (
@@ -15,7 +18,7 @@ export function AllLists() {
   }
 
   if (isError || !lists || !lists.items) {
-    return <Typography>Lists could not be loaded.</Typography>;
+    return signIn();
   }
 
   return (
@@ -25,3 +28,5 @@ export function AllLists() {
     </>
   );
 }
+
+AllLists.auth = true;

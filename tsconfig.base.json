@@ -17,6 +17,9 @@
     "paths": {
       "@list-app/api/lists/feature": ["libs/api/lists/feature/src/index.ts"],
       "@list-app/api/public/feature": ["libs/api/public/feature/src/index.ts"],
+      "@list-app/api/shared/auth/feature": [
+        "libs/api/shared/auth/feature/src/index.ts"
+      ],
       "@list-app/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
       ],

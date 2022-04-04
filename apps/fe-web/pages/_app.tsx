@@ -1,13 +1,14 @@
 import { CacheProvider, ThemeProvider } from '@emotion/react';
-import { Layout } from '@list-app/fe-web/shared/ui';
 import { CssBaseline } from '@mui/material';
+import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
+import Root from '../components/root';
 import createEmotionCache from '../utils/create-emotion-cache';
 import theme from '../utils/theme';
 
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp({ Component, pageProps, emotionCache }) {
+export default function MyApp({ Component, pageProps, emotionCache, session }) {
   emotionCache = clientSideEmotionCache;
   return (
     <CacheProvider value={emotionCache}>
@@ -16,9 +17,11 @@ export default function MyApp({ Component, pageProps, emotionCache }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <SessionProvider session={session}>
+          <Root requiresAuth={Component.auth}>
+            <Component {...pageProps} />
+          </Root>
+        </SessionProvider>
       </ThemeProvider>
     </CacheProvider>
   );

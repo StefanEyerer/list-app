@@ -3,9 +3,9 @@ import useSWR from 'swr';
 import { apiUrl } from './internal/api-url';
 import { fetcher } from './internal/fetcher';
 
-export function useLists() {
+export function useLists(token: string) {
   const { data, error, isValidating, mutate } = useSWR<Lists>(
-    `${apiUrl}/lists`,
+    [`${apiUrl}/lists`, token],
     fetcher
   );
 

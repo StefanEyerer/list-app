@@ -4,6 +4,8 @@ import { CreateListContent } from './create-list-content';
 
 const mockRouter = { push: jest.fn() };
 jest.mock('next/router', () => ({ useRouter: () => mockRouter }));
+const mockSession = { data: { id_token: 'someToken' } };
+jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
 jest.mock('@list-app/shared/frontend/data-access', () => ({
   createList: jest.fn().mockResolvedValue(null),
 }));
@@ -37,10 +39,10 @@ describe('CreateListContent', () => {
     });
     fireEvent.click(screen.getByTestId('create'));
 
-    expect(createList).toHaveBeenCalledWith({
-      name: 'Some Name',
-      description: 'Some Description',
-    });
+    expect(createList).toHaveBeenCalledWith(
+      { name: 'Some Name', description: 'Some Description' },
+      'someToken'
+    );
   });
   it('should create a new list if button is clicked and only title is provided', () => {
     render(<CreateListContent />);
@@ -50,10 +52,10 @@ describe('CreateListContent', () => {
     });
     fireEvent.click(screen.getByTestId('create'));
 
-    expect(createList).toHaveBeenCalledWith({
-      name: 'Some Name',
-      description: '',
-    });
+    expect(createList).toHaveBeenCalledWith(
+      { name: 'Some Name', description: '' },
+      'someToken'
+    );
   });
   it('should not create a new list if button is clicked and no title is provided', () => {
     render(<CreateListContent />);

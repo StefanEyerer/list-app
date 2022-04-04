@@ -16,7 +16,7 @@ describe('handleReadList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'findById').mockResolvedValue({ get: () => 'found' });
+    jest.spyOn(ListModel, 'findOne').mockResolvedValue({ get: () => 'found' });
 
     await handleReadList(req, res);
 
@@ -31,7 +31,7 @@ describe('handleReadList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'findById').mockResolvedValue(null);
+    jest.spyOn(ListModel, 'findOne').mockResolvedValue(null);
 
     await handleReadList(req, res);
 

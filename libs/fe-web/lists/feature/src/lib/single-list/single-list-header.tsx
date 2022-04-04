@@ -2,6 +2,7 @@ import { List } from '@list-app/shared/api-interfaces';
 import { updateList } from '@list-app/shared/frontend/data-access';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Box, IconButton, Link, TextField, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import NextLink from 'next/link';
 import { BaseSyntheticEvent, useState } from 'react';
 import { KeyedMutator } from 'swr';
@@ -13,6 +14,8 @@ interface SingleListHeaderProps {
 
 export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
   const [text, setText] = useState('');
+  const session = useSession();
+  const id_token = session.data?.['id_token'] as string;
 
   const handleAddItem = (event: BaseSyntheticEvent) => {
     event.preventDefault();
@@ -20,7 +23,7 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
     const id = `${Math.floor(Math.random() * 1000)}`;
     const newItems = [...list.items, { id, text }];
     setText('');
-    updateList(list.id, { items: newItems }).then(() => {
+    updateList(list.id, { items: newItems }, id_token).then(() => {
       mutate();
     });
   };

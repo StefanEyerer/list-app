@@ -9,3 +9,5 @@ export function CreateList() {
     </>
   );
 }
+
+CreateList.auth = true;

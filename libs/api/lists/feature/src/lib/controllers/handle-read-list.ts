@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { List } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
@@ -14,8 +15,9 @@ export async function handleReadList(
   }
 
   try {
+    const userId = (req as any)['userId'];
     const id = req.params['id'];
-    const list = await ListModel.findById(id);
+    const list = await ListModel.findOne({ _id: id, user: userId });
 
     if (!list) {
       res.status(404).json({ error: 'list not found' });
@@ -27,6 +29,7 @@ export async function handleReadList(
       name: list.get('name', String),
       description: list.get('description', String),
       items: list.get('items', Array),
+      userId: list.get('user', String),
     };
     res.status(200).json(responsePayload);
   } catch (error) {

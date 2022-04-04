@@ -10,6 +10,7 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import { KeyedMutator } from 'swr';
 
 interface SingleListContentProps {
@@ -18,9 +19,12 @@ interface SingleListContentProps {
 }
 
 export function SingleListContent({ list, mutate }: SingleListContentProps) {
+  const session = useSession();
+  const id_token = session.data?.['id_token'] as string;
+
   const handleDeleteItem = (id: string) => {
     const newItems = list.items.filter((item) => item['id'] !== id);
-    updateList(list.id, { items: newItems }).then(() => {
+    updateList(list.id, { items: newItems }, id_token).then(() => {
       mutate();
     });
   };

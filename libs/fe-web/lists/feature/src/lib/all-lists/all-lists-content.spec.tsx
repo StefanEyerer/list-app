@@ -4,6 +4,8 @@ import { AllListsContent } from './all-lists-content';
 
 const mockRouter = { push: jest.fn() };
 jest.mock('next/router', () => ({ useRouter: () => mockRouter }));
+const mockSession = { data: { id_token: 'someToken' } };
+jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
 jest.mock('@list-app/shared/frontend/data-access', () => ({
   deleteList: jest.fn().mockResolvedValue(null),
 }));
@@ -22,8 +24,20 @@ describe('AllListsContent', () => {
   it('should render name and description of lists if lists are present', () => {
     const someLists = {
       items: [
-        { id: '1', name: 'Name 1', description: 'Description 1', items: [] },
-        { id: '2', name: 'Name 2', description: 'Description 2', items: [] },
+        {
+          id: '1',
+          name: 'Name 1',
+          description: 'Description 1',
+          items: [],
+          userId: '1',
+        },
+        {
+          id: '2',
+          name: 'Name 2',
+          description: 'Description 2',
+          items: [],
+          userId: '2',
+        },
       ],
     };
 
@@ -37,7 +51,13 @@ describe('AllListsContent', () => {
   it('should navigate to list if list is clicked', () => {
     const someLists = {
       items: [
-        { id: '1', name: 'Name 1', description: 'Description 1', items: [] },
+        {
+          id: '1',
+          name: 'Name 1',
+          description: 'Description 1',
+          items: [],
+          userId: '1',
+        },
       ],
     };
 
@@ -49,13 +69,19 @@ describe('AllListsContent', () => {
   it('should delete list if delete icon is clicked', () => {
     const someLists = {
       items: [
-        { id: '1', name: 'Name 1', description: 'Description 1', items: [] },
+        {
+          id: '1',
+          name: 'Name 1',
+          description: 'Description 1',
+          items: [],
+          userId: '1',
+        },
       ],
     };
 
     render(<AllListsContent lists={someLists} mutate={jest.fn()} />);
     fireEvent.click(screen.getByTestId('delete'));
 
-    expect(deleteList).toHaveBeenCalledWith('1');
+    expect(deleteList).toHaveBeenCalledWith('1', 'someToken');
   });
 });

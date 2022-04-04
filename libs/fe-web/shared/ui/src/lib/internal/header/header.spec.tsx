@@ -2,16 +2,22 @@ import { render } from '@testing-library/react';
 import { Header } from './header';
 
 describe('Header', () => {
-  it('should render username if authenticated', () => {
+  it('should render logout button if authenticated', () => {
     const { baseElement } = render(
-      <Header isAuthenticated={true} username={'someUsername'} />
+      <Header
+        isAuthenticated={true}
+        user={{ name: 'someName', email: 'someEmail', image: 'someImage' }}
+      />
     );
-    expect(baseElement.innerHTML).toContain('someUsername');
+    expect(baseElement.innerHTML).toContain('Logout');
   });
-  it('should not render username if not authenticated', () => {
+  it('should render login button if not authenticated', () => {
     const { baseElement } = render(
-      <Header isAuthenticated={false} username={'someUsername'} />
+      <Header
+        isAuthenticated={false}
+        user={{ name: 'someName', email: 'someEmail', image: 'someImage' }}
+      />
     );
-    expect(baseElement.innerHTML).not.toContain('someUsername');
+    expect(baseElement.innerHTML).toContain('Login');
   });
 });

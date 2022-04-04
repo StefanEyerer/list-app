@@ -1,5 +1,6 @@
 import { useList } from '@list-app/shared/frontend/data-access';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { SingleListContent } from '../lib/single-list/single-list-content';
 import { SingleListHeader } from '../lib/single-list/single-list-header';
@@ -7,7 +8,9 @@ import { SingleListHeader } from '../lib/single-list/single-list-header';
 export function SingleList() {
   const router = useRouter();
   const id = (router.query['id'] as string) || '';
-  const { list, isError, isLoading, mutate } = useList(id);
+  const session = useSession();
+  const id_token = session.data?.['id_token'] as string;
+  const { list, isError, isLoading, mutate } = useList(id, id_token);
 
   if (isLoading) {
     return (
@@ -18,7 +21,7 @@ export function SingleList() {
   }
 
   if (isError || !list || !list.items) {
-    return <Typography>List could not be loaded.</Typography>;
+    return signIn();
   }
 
   return (
@@ -28,3 +31,5 @@ export function SingleList() {
     </>
   );
 }
+
+SingleList.auth = true;

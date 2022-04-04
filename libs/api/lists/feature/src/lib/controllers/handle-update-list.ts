@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { List } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
@@ -14,9 +15,10 @@ export async function handleUpdateList(
   }
 
   try {
+    const userId = (req as any)['userId'];
     const id = req.params['id'];
-    const list = await ListModel.findByIdAndUpdate(
-      id,
+    const list = await ListModel.findOneAndUpdate(
+      { _id: id, user: userId },
       { ...req.body },
       { new: true }
     );
@@ -31,6 +33,7 @@ export async function handleUpdateList(
       name: list.get('name', String),
       description: list.get('description', String),
       items: list.get('items', Array),
+      userId: list.get('user', String),
     };
     res.status(200).json(responsePayload);
   } catch (error) {

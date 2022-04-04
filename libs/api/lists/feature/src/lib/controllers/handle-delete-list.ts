@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
@@ -13,14 +14,9 @@ export async function handleDeleteList(
   }
 
   try {
+    const userId = (req as any)['userId'];
     const id = req.params['id'];
-    const list = await ListModel.deleteOne({ _id: id });
-
-    if (!list) {
-      res.status(404).json({ error: 'list not found' });
-      return;
-    }
-
+    await ListModel.deleteOne({ _id: id, user: userId });
     res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });

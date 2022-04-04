@@ -1,22 +1,21 @@
 import { Box, Container } from '@mui/material';
-import { ReactNode } from 'react';
 import { Footer } from '../internal/footer/footer';
 import { Header } from '../internal/header/header';
 
 export interface LayoutProps {
-  children: ReactNode;
+  children: JSX.Element;
   isAuthenticated?: boolean;
-  username?: string;
+  user?: { name: string; email: string; image: string };
 }
 
 export function Layout({
   children,
   isAuthenticated = false,
-  username = 'Unknown',
+  user = { name: '', email: '', image: '' },
 }: LayoutProps) {
   return (
     <Box display={'flex'} flexDirection={'column'} height={'100vh'} margin={0}>
-      <Header isAuthenticated={isAuthenticated} username={username} />
+      <Header isAuthenticated={isAuthenticated} user={user} />
       <main>
         <Box paddingY={6}>
           <Container maxWidth={'md'}>{children}</Container>

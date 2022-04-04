@@ -1,3 +1,4 @@
+import { authMiddleware } from '@list-app/api/shared/auth/feature';
 import * as express from 'express';
 import { handleCreateList } from './controllers/handle-create-list';
 import { handleDeleteList } from './controllers/handle-delete-list';
@@ -14,16 +15,26 @@ import { validateUpdateList } from './validators/validate-update-list';
 
 const listsRouter = express.Router();
 
-listsRouter.post('/', validateCreateList(), handleCreateList);
+listsRouter.post('/', authMiddleware, validateCreateList(), handleCreateList);
 
-listsRouter.get('/', validateReadLists(), handleReadLists);
+listsRouter.get('/', authMiddleware, validateReadLists(), handleReadLists);
 
-listsRouter.get('/:id', validateReadList(), handleReadList);
+listsRouter.get('/:id', authMiddleware, validateReadList(), handleReadList);
 
-listsRouter.put('/:id', validateUpdateList(), handleUpdateList);
+listsRouter.put('/:id', authMiddleware, validateUpdateList(), handleUpdateList);
 
-listsRouter.delete('/:id', validateDeleteList(), handleDeleteList);
+listsRouter.delete(
+  '/:id',
+  authMiddleware,
+  validateDeleteList(),
+  handleDeleteList
+);
 
-listsRouter.delete('/', validateDeleteLists(), handleDeleteLists);
+listsRouter.delete(
+  '/',
+  authMiddleware,
+  validateDeleteLists(),
+  handleDeleteLists
+);
 
 export { listsRouter };

@@ -2,6 +2,8 @@ import { updateList } from '@list-app/shared/frontend/data-access';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { SingleListContent } from './single-list-content';
 
+const mockSession = { data: { id_token: 'someToken' } };
+jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
 jest.mock('@list-app/shared/frontend/data-access', () => ({
   updateList: jest.fn().mockResolvedValue(null),
 }));
@@ -16,6 +18,7 @@ describe('SingleListContent', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
+      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
@@ -31,6 +34,7 @@ describe('SingleListContent', () => {
         { id: '11', text: 'Text 11' },
         { id: '22', text: 'Text 22' },
       ],
+      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
@@ -44,11 +48,12 @@ describe('SingleListContent', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [{ id: '11', text: 'Text 11' }],
+      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
     fireEvent.click(screen.getByTestId('delete'));
 
-    expect(updateList).toHaveBeenCalledWith('1', { items: [] });
+    expect(updateList).toHaveBeenCalledWith('1', { items: [] }, 'someToken');
   });
 });

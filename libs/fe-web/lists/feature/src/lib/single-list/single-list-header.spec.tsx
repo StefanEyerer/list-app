@@ -5,6 +5,8 @@ import { SingleListHeader } from './single-list-header';
 const mockMath = Object.create(global.Math);
 mockMath.random = () => 0.5;
 global.Math = mockMath;
+const mockSession = { data: { id_token: 'someToken' } };
+jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
 jest.mock('@list-app/shared/frontend/data-access', () => ({
   updateList: jest.fn().mockResolvedValue(null),
 }));
@@ -19,6 +21,7 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
+      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
@@ -32,6 +35,7 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
+      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
@@ -40,9 +44,11 @@ describe('SingleListHeader', () => {
     });
     fireEvent.click(screen.getByTestId('add'));
 
-    expect(updateList).toHaveBeenCalledWith('1', {
-      items: [{ id: '500', text: 'Some Text' }],
-    });
+    expect(updateList).toHaveBeenCalledWith(
+      '1',
+      { items: [{ id: '500', text: 'Some Text' }] },
+      'someToken'
+    );
   });
   it('should not update list if button is clicked and no text for new item is provided', () => {
     const someList = {
@@ -50,6 +56,7 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
+      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);

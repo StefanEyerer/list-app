@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ListModel } from '@list-app/api/shared/data-access';
 import { Lists } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
@@ -7,7 +8,8 @@ export async function handleReadLists(
   res: Response
 ): Promise<void> {
   try {
-    const lists = await ListModel.find();
+    const userId = (req as any)['userId'];
+    const lists = await ListModel.find({ user: userId });
     const responsePayload: Lists = {
       items: [
         ...lists.map((list) => {
@@ -16,6 +18,7 @@ export async function handleReadLists(
             name: list.get('name', String),
             description: list.get('description', String),
             items: list.get('items', Array),
+            userId: list.get('user', String),
           };
         }),
       ],

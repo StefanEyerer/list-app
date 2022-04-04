@@ -3,7 +3,11 @@ import { Layout } from './layout';
 
 describe('Layout', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Layout>SomeChildren</Layout>);
+    const { baseElement } = render(
+      <Layout>
+        <h1>SomeChildren</h1>
+      </Layout>
+    );
     expect(baseElement).toBeTruthy();
   });
 });
