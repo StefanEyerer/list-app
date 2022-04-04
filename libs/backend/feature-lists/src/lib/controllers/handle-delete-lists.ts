@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend-shared-data-access';
+import { ListModel } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 

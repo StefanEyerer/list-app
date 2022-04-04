@@ -1,4 +1,4 @@
-import { Layout } from '@list-app/frontend-web-shared-ui';
+import { Layout } from '@list-app/frontend/web/shared-ui';
 import { useSession } from 'next-auth/react';
 import { Auth } from './auth';
 

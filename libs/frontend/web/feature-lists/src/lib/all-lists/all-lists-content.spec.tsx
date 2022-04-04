@@ -1,4 +1,4 @@
-import { deleteList } from '@list-app/frontend-shared-data-access';
+import { deleteList } from '@list-app/frontend/shared/data-access';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { AllListsContent } from './all-lists-content';
 
@@ -6,7 +6,7 @@ const mockRouter = { push: jest.fn() };
 jest.mock('next/router', () => ({ useRouter: () => mockRouter }));
 const mockSession = { data: { id_token: 'someToken' } };
 jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
-jest.mock('@list-app/frontend-shared-data-access', () => ({
+jest.mock('@list-app/frontend/shared/data-access', () => ({
   deleteList: jest.fn().mockResolvedValue(null),
 }));
 

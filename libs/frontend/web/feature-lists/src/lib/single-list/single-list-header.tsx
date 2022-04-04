@@ -1,4 +1,4 @@
-import { updateList } from '@list-app/frontend-shared-data-access';
+import { updateList } from '@list-app/frontend/shared/data-access';
 import { List } from '@list-app/shared/api-interfaces';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Box, IconButton, Link, TextField, Typography } from '@mui/material';

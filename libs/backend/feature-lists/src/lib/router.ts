@@ -1,4 +1,4 @@
-import { authMiddleware } from '@list-app/backend-shared-feature-auth';
+import { authMiddleware } from '@list-app/backend/shared/feature-auth';
 import * as express from 'express';
 import { handleCreateList } from './controllers/handle-create-list';
 import { handleDeleteList } from './controllers/handle-delete-list';

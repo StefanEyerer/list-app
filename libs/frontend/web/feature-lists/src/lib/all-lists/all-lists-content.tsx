@@ -1,4 +1,4 @@
-import { deleteList } from '@list-app/frontend-shared-data-access';
+import { deleteList } from '@list-app/frontend/shared/data-access';
 import { Lists } from '@list-app/shared/api-interfaces';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import DeleteIcon from '@mui/icons-material/Delete';

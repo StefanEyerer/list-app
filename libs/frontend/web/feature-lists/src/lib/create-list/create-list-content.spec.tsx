@@ -1,4 +1,4 @@
-import { createList } from '@list-app/frontend-shared-data-access';
+import { createList } from '@list-app/frontend/shared/data-access';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { CreateListContent } from './create-list-content';
 
@@ -6,7 +6,7 @@ const mockRouter = { push: jest.fn() };
 jest.mock('next/router', () => ({ useRouter: () => mockRouter }));
 const mockSession = { data: { id_token: 'someToken' } };
 jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
-jest.mock('@list-app/frontend-shared-data-access', () => ({
+jest.mock('@list-app/frontend/shared/data-access', () => ({
   createList: jest.fn().mockResolvedValue(null),
 }));
 

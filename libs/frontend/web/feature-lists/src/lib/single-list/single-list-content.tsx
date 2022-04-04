@@ -1,4 +1,4 @@
-import { updateList } from '@list-app/frontend-shared-data-access';
+import { updateList } from '@list-app/frontend/shared/data-access';
 import { List as ListIF } from '@list-app/shared/api-interfaces';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';

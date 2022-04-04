@@ -1,4 +1,4 @@
-import { createList } from '@list-app/frontend-shared-data-access';
+import { createList } from '@list-app/frontend/shared/data-access';
 import { Box, Button, TextField } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

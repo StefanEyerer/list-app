@@ -15,34 +15,34 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@list-app/backend-feature-lists": [
+      "@list-app/backend/feature-lists": [
         "libs/backend/feature-lists/src/index.ts"
       ],
-      "@list-app/backend-feature-public": [
+      "@list-app/backend/feature-public": [
         "libs/backend/feature-public/src/index.ts"
       ],
-      "@list-app/backend-feature-shares": [
+      "@list-app/backend/feature-shares": [
         "libs/backend/feature-shares/src/index.ts"
       ],
-      "@list-app/backend-shared-data-access": [
+      "@list-app/backend/shared/data-access": [
         "libs/backend/shared/data-access/src/index.ts"
       ],
-      "@list-app/backend-shared-feature-auth": [
+      "@list-app/backend/shared/feature-auth": [
         "libs/backend/shared/feature-auth/src/index.ts"
       ],
-      "@list-app/frontend-shared-data-access": [
+      "@list-app/frontend/shared/data-access": [
         "libs/frontend/shared/data-access/src/index.ts"
       ],
-      "@list-app/frontend-web-feature-lists": [
+      "@list-app/frontend/web/feature-lists": [
         "libs/frontend/web/feature-lists/src/index.ts"
       ],
-      "@list-app/frontend-web-feature-public": [
+      "@list-app/frontend/web/feature-public": [
         "libs/frontend/web/feature-public/src/index.ts"
       ],
-      "@list-app/frontend-web-feature-shares": [
+      "@list-app/frontend/web/feature-shares": [
         "libs/frontend/web/feature-shares/src/index.ts"
       ],
-      "@list-app/frontend-web-shared-ui": [
+      "@list-app/frontend/web/shared-ui": [
         "libs/frontend/web/shared/ui/src/index.ts"
       ],
       "@list-app/shared/api-interfaces": [

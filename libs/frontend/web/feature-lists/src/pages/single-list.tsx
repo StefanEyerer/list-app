@@ -1,4 +1,4 @@
-import { useList } from '@list-app/frontend-shared-data-access';
+import { useList } from '@list-app/frontend/shared/data-access';
 import { Box, CircularProgress } from '@mui/material';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

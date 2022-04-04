@@ -1,4 +1,4 @@
-import { updateList } from '@list-app/frontend-shared-data-access';
+import { updateList } from '@list-app/frontend/shared/data-access';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { SingleListHeader } from './single-list-header';
 
@@ -7,7 +7,7 @@ mockMath.random = () => 0.5;
 global.Math = mockMath;
 const mockSession = { data: { id_token: 'someToken' } };
 jest.mock('next-auth/react', () => ({ useSession: () => mockSession }));
-jest.mock('@list-app/frontend-shared-data-access', () => ({
+jest.mock('@list-app/frontend/shared/data-access', () => ({
   updateList: jest.fn().mockResolvedValue(null),
 }));
 

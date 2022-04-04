@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { UserModel } from '@list-app/backend-shared-data-access';
+import { UserModel } from '@list-app/backend/shared/data-access';
 import { NextFunction, Request, Response } from 'express';
 import { OAuth2Client } from 'google-auth-library';
 
