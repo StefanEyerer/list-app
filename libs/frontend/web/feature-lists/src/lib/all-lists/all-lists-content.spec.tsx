@@ -29,14 +29,12 @@ describe('AllListsContent', () => {
           name: 'Name 1',
           description: 'Description 1',
           items: [],
-          userId: '1',
         },
         {
           id: '2',
           name: 'Name 2',
           description: 'Description 2',
           items: [],
-          userId: '2',
         },
       ],
     };
@@ -56,7 +54,6 @@ describe('AllListsContent', () => {
           name: 'Name 1',
           description: 'Description 1',
           items: [],
-          userId: '1',
         },
       ],
     };
@@ -74,7 +71,6 @@ describe('AllListsContent', () => {
           name: 'Name 1',
           description: 'Description 1',
           items: [],
-          userId: '1',
         },
       ],
     };

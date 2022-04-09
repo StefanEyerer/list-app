@@ -6,7 +6,7 @@ const databaseUrl = process.env.NX_DATABASE_URL;
 
 startUp();
 
-async function startUp(): Promise<void> {
+async function startUp() {
   try {
     await mongoose.connect(databaseUrl);
     app.listen(port, () => {

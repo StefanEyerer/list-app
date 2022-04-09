@@ -4,10 +4,7 @@ import { List } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
-export async function handleUpdateList(
-  req: Request,
-  res: Response
-): Promise<void> {
+export async function handleUpdateList(req: Request, res: Response) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(400).json(errors);
@@ -33,7 +30,6 @@ export async function handleUpdateList(
       name: list.get('name', String),
       description: list.get('description', String),
       items: list.get('items', Array),
-      userId: list.get('user', String),
     };
     res.status(200).json(responsePayload);
   } catch (error) {

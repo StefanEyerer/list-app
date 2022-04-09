@@ -3,5 +3,4 @@ export interface List {
   name: string;
   description: string;
   items: Array<Record<string, string>>;
-  userId: string;
 }

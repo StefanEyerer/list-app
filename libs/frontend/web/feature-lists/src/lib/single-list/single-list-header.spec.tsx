@@ -21,7 +21,6 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
-      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
@@ -35,7 +34,6 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
-      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
@@ -56,7 +54,6 @@ describe('SingleListHeader', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
-      userId: '1',
     };
 
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);

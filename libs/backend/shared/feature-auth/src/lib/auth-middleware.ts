@@ -7,7 +7,7 @@ export async function authMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<void> {
+) {
   const clientIdWeb = process.env['GOOGLE_CLIENT_ID_WEB'];
   const authHeader = req.header('Authorization');
   const token = authHeader && authHeader.split(' ')[1];

@@ -3,10 +3,7 @@ import { ListModel } from '@list-app/backend/shared/data-access';
 import { Lists } from '@list-app/shared/api-interfaces';
 import { Request, Response } from 'express';
 
-export async function handleReadLists(
-  req: Request,
-  res: Response
-): Promise<void> {
+export async function handleReadLists(req: Request, res: Response) {
   try {
     const userId = (req as any)['userId'];
     const lists = await ListModel.find({ user: userId });
@@ -18,7 +15,6 @@ export async function handleReadLists(
             name: list.get('name', String),
             description: list.get('description', String),
             items: list.get('items', Array),
-            userId: list.get('user', String),
           };
         }),
       ],

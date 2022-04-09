@@ -18,7 +18,6 @@ describe('SingleListContent', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [],
-      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
@@ -34,7 +33,6 @@ describe('SingleListContent', () => {
         { id: '11', text: 'Text 11' },
         { id: '22', text: 'Text 22' },
       ],
-      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
@@ -48,7 +46,6 @@ describe('SingleListContent', () => {
       name: 'Name 1',
       description: 'Description 1',
       items: [{ id: '11', text: 'Text 11' }],
-      userId: '1',
     };
 
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
