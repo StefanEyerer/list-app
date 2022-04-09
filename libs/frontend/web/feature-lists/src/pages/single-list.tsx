@@ -21,7 +21,8 @@ export function SingleList() {
   }
 
   if (isError || !list || !list.items) {
-    return signIn();
+    signIn();
+    return <Box />;
   }
 
   return (

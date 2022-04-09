@@ -18,7 +18,8 @@ export function AllLists() {
   }
 
   if (isError || !lists || !lists.items) {
-    return signIn();
+    signIn();
+    return <Box />;
   }
 
   return (
