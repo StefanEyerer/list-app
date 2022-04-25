@@ -33,7 +33,7 @@ export function Header({ isAuthenticated, user }: HeaderProps) {
               sx={{ mr: 2 }}
               onClick={() => router.push('/lists')}
             >
-              My Lists
+              Lists
             </Button>
             <Button
               color={'primary'}

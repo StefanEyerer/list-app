@@ -1,8 +1,9 @@
-import { deleteList } from '@list-app/frontend/shared/data-access';
+import { createShare, deleteList } from '@list-app/frontend/shared/data-access';
 import { Lists } from '@list-app/shared/api-interfaces';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ShareIcon from '@mui/icons-material/Share';
 import {
   Box,
   IconButton,
@@ -27,6 +28,10 @@ export function AllListsContent({ lists, mutate }: AllListsContentProps) {
   const session = useSession();
   const id_token = session.data?.['id_token'] as string;
 
+  const handleShareList = (id: string) => {
+    createShare({ listId: id }, id_token);
+  };
+
   const handleDeleteList = (id: string) => {
     deleteList(id, id_token).then(() => {
       mutate();
@@ -48,18 +53,7 @@ export function AllListsContent({ lists, mutate }: AllListsContentProps) {
   return (
     <List sx={{ mt: 2 }}>
       {lists.items.map((list) => (
-        <ListItem
-          divider={true}
-          key={list['id']}
-          secondaryAction={
-            <IconButton
-              data-testid="delete"
-              onClick={() => handleDeleteList(list.id)}
-            >
-              <DeleteIcon color={'error'} />
-            </IconButton>
-          }
-        >
+        <ListItem divider={true} key={list.id}>
           <ListItemButton
             data-testid="navigate"
             onClick={() => handleNavigate(list.id)}
@@ -72,6 +66,22 @@ export function AllListsContent({ lists, mutate }: AllListsContentProps) {
               secondary={list.description}
             ></ListItemText>
           </ListItemButton>
+          <ListItemIcon>
+            <IconButton
+              data-testid="share"
+              onClick={() => handleShareList(list.id)}
+            >
+              <ShareIcon color={'primary'} />
+            </IconButton>
+          </ListItemIcon>
+          <ListItemIcon>
+            <IconButton
+              data-testid="delete"
+              onClick={() => handleDeleteList(list.id)}
+            >
+              <DeleteIcon color={'error'} />
+            </IconButton>
+          </ListItemIcon>
         </ListItem>
       ))}
     </List>

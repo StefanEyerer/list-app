@@ -7,6 +7,7 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
   Typography,
 } from '@mui/material';
@@ -40,20 +41,16 @@ export function SingleListContent({ list, mutate }: SingleListContentProps) {
   return (
     <List dense={true} sx={{ listStyleType: 'circle' }}>
       {list.items.map((item) => (
-        <ListItem
-          divider={true}
-          key={item['id']}
-          secondaryAction={
+        <ListItem divider={true} key={item['id']} sx={{ display: 'list-item' }}>
+          <ListItemText primary={item['text']} />
+          <ListItemSecondaryAction>
             <IconButton
               data-testid="delete"
               onClick={() => handleDeleteItem(item['id'])}
             >
               <DeleteIcon color={'error'} />
             </IconButton>
-          }
-          sx={{ display: 'list-item' }}
-        >
-          <ListItemText primary={item['text']} />
+          </ListItemSecondaryAction>
         </ListItem>
       ))}
     </List>
