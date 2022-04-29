@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
@@ -44,12 +45,14 @@ export function SingleListContent({ list, mutate }: SingleListContentProps) {
         <ListItem divider={true} key={item['id']} sx={{ display: 'list-item' }}>
           <ListItemText primary={item['text']} />
           <ListItemSecondaryAction>
-            <IconButton
-              data-testid="delete"
-              onClick={() => handleDeleteItem(item['id'])}
-            >
-              <DeleteIcon color={'error'} />
-            </IconButton>
+            <Tooltip title={'Delete List Item'}>
+              <IconButton
+                data-testid="delete"
+                onClick={() => handleDeleteItem(item['id'])}
+              >
+                <DeleteIcon color={'error'} />
+              </IconButton>
+            </Tooltip>
           </ListItemSecondaryAction>
         </ListItem>
       ))}

@@ -12,6 +12,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
@@ -67,20 +68,24 @@ export function AllListsContent({ lists, mutate }: AllListsContentProps) {
             ></ListItemText>
           </ListItemButton>
           <ListItemIcon>
-            <IconButton
-              data-testid="share"
-              onClick={() => handleShareList(list.id)}
-            >
-              <ShareIcon color={'primary'} />
-            </IconButton>
+            <Tooltip title={'Share List'}>
+              <IconButton
+                data-testid="share"
+                onClick={() => handleShareList(list.id)}
+              >
+                <ShareIcon color={'primary'} />
+              </IconButton>
+            </Tooltip>
           </ListItemIcon>
           <ListItemIcon>
-            <IconButton
-              data-testid="delete"
-              onClick={() => handleDeleteList(list.id)}
-            >
-              <DeleteIcon color={'error'} />
-            </IconButton>
+            <Tooltip title={'Delete List'}>
+              <IconButton
+                data-testid="delete"
+                onClick={() => handleDeleteList(list.id)}
+              >
+                <DeleteIcon color={'error'} />
+              </IconButton>
+            </Tooltip>
           </ListItemIcon>
         </ListItem>
       ))}

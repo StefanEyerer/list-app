@@ -1,5 +1,5 @@
 import { createList } from '@list-app/frontend/shared/data-access';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Tooltip } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent, useState } from 'react';
@@ -51,14 +51,16 @@ export function CreateListContent() {
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
-      <Button
-        data-testid="create"
-        type={'submit'}
-        variant={'outlined'}
-        sx={{ alignSelf: 'flex-end' }}
-      >
-        Create List
-      </Button>
+      <Tooltip title={'Create List'}>
+        <Button
+          data-testid="create"
+          type={'submit'}
+          variant={'outlined'}
+          sx={{ alignSelf: 'flex-end' }}
+        >
+          Create List
+        </Button>
+      </Tooltip>
     </Box>
   );
 }

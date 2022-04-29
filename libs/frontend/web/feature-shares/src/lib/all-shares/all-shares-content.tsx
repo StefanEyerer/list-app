@@ -11,6 +11,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
@@ -58,28 +59,34 @@ export function AllSharesContent({ shares, mutate }: AllSharesContentProps) {
             secondary={share.list.description}
           ></ListItemText>
           <ListItemIcon>
-            <IconButton
-              data-testid="copyAccessKey"
-              onClick={() => handleCopyAccessKey(share.accessKey)}
-            >
-              <ContentCopyIcon color={'primary'} />
-            </IconButton>
+            <Tooltip title={'Copy Access Key'}>
+              <IconButton
+                data-testid="copyAccessKey"
+                onClick={() => handleCopyAccessKey(share.accessKey)}
+              >
+                <ContentCopyIcon color={'primary'} />
+              </IconButton>
+            </Tooltip>
           </ListItemIcon>
           <ListItemIcon>
-            <IconButton
-              data-testid="copyShareLink"
-              onClick={() => handleCopyShareLink(share.accessKey)}
-            >
-              <LinkIcon color={'primary'} />
-            </IconButton>
+            <Tooltip title={'Copy Share Link'}>
+              <IconButton
+                data-testid="copyShareLink"
+                onClick={() => handleCopyShareLink(share.accessKey)}
+              >
+                <LinkIcon color={'primary'} />
+              </IconButton>
+            </Tooltip>
           </ListItemIcon>
           <ListItemIcon>
-            <IconButton
-              data-testid="delete"
-              onClick={() => handleDeleteShare(share.id)}
-            >
-              <DeleteIcon color={'error'} />
-            </IconButton>
+            <Tooltip title={'Delete Share'}>
+              <IconButton
+                data-testid="delete"
+                onClick={() => handleDeleteShare(share.id)}
+              >
+                <DeleteIcon color={'error'} />
+              </IconButton>
+            </Tooltip>
           </ListItemIcon>
         </ListItem>
       ))}

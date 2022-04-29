@@ -27,43 +27,51 @@ export function Header({ isAuthenticated, user }: HeaderProps) {
         </Typography>
         {isAuthenticated ? (
           <>
-            <Button
-              color={'primary'}
-              variant={'outlined'}
-              sx={{ mr: 2 }}
-              onClick={() => router.push('/lists')}
-            >
-              Lists
-            </Button>
-            <Button
-              color={'primary'}
-              variant={'outlined'}
-              sx={{ mr: 2 }}
-              onClick={() => router.push('/shares')}
-            >
-              Shared Lists
-            </Button>
-            <Button
-              color={'primary'}
-              variant={'outlined'}
-              sx={{ mr: 2 }}
-              onClick={() => signOut()}
-            >
-              Logout
-            </Button>
+            <Tooltip title={'Show My Lists'}>
+              <Button
+                color={'primary'}
+                variant={'outlined'}
+                sx={{ mr: 2 }}
+                onClick={() => router.push('/lists')}
+              >
+                Lists
+              </Button>
+            </Tooltip>
+            <Tooltip title={'Show My Shared Lists'}>
+              <Button
+                color={'primary'}
+                variant={'outlined'}
+                sx={{ mr: 2 }}
+                onClick={() => router.push('/shares')}
+              >
+                Shared Lists
+              </Button>
+            </Tooltip>
+            <Tooltip title={'Logout'}>
+              <Button
+                color={'primary'}
+                variant={'outlined'}
+                sx={{ mr: 2 }}
+                onClick={() => signOut()}
+              >
+                Logout
+              </Button>
+            </Tooltip>
             <Tooltip title={user.email}>
               <Avatar alt={user.name} src={user.image} />
             </Tooltip>
           </>
         ) : (
-          <Button
-            color={'primary'}
-            variant={'outlined'}
-            sx={{ mr: 2 }}
-            onClick={() => signIn()}
-          >
-            Login
-          </Button>
+          <Tooltip title={'Login'}>
+            <Button
+              color={'primary'}
+              variant={'outlined'}
+              sx={{ mr: 2 }}
+              onClick={() => signIn()}
+            >
+              Login
+            </Button>
+          </Tooltip>
         )}
       </Toolbar>
     </AppBar>

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Tooltip, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 
 export function AllListsHeader() {
@@ -17,13 +17,15 @@ export function AllListsHeader() {
       }}
     >
       <Typography variant={'h4'}>My Lists</Typography>
-      <Button
-        data-testid="navigate"
-        variant={'outlined'}
-        onClick={handleNavigate}
-      >
-        Create New List
-      </Button>
+      <Tooltip title={'Create New List'}>
+        <Button
+          data-testid="navigate"
+          variant={'outlined'}
+          onClick={handleNavigate}
+        >
+          Create New List
+        </Button>
+      </Tooltip>
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Tooltip } from '@mui/material';
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent, useState } from 'react';
 
@@ -34,14 +34,16 @@ export function PublicRootContent() {
         value={accessKey}
         onChange={(event) => setAccessKey(event.target.value)}
       />
-      <Button
-        data-testid="navigate"
-        type={'submit'}
-        variant={'outlined'}
-        sx={{ alignSelf: 'flex-end' }}
-      >
-        Show Shared List
-      </Button>
+      <Tooltip title={'Show Shared List'}>
+        <Button
+          data-testid="navigate"
+          type={'submit'}
+          variant={'outlined'}
+          sx={{ alignSelf: 'flex-end' }}
+        >
+          Show Shared List
+        </Button>
+      </Tooltip>
     </Box>
   );
 }
