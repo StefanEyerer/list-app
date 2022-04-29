@@ -1,7 +1,15 @@
 import { updateList } from '@list-app/frontend/shared/data-access';
 import { List } from '@list-app/shared/api-interfaces';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { Box, IconButton, Link, TextField, Typography } from '@mui/material';
+import {
+  Alert,
+  Box,
+  IconButton,
+  Link,
+  Snackbar,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useSession } from 'next-auth/react';
 import NextLink from 'next/link';
 import { BaseSyntheticEvent, useState } from 'react';
@@ -13,6 +21,7 @@ interface SingleListHeaderProps {
 }
 
 export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
+  const [message, setMessage] = useState('');
   const [text, setText] = useState('');
   const session = useSession();
   const id_token = session.data?.['id_token'] as string;
@@ -24,6 +33,7 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
     const newItems = [...list.items, { id, text }];
     setText('');
     updateList(list.id, { items: newItems }, id_token).then(() => {
+      setMessage('Item has been added :)');
       mutate();
     });
   };
@@ -62,6 +72,17 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
       <Box sx={{ my: 2 }}>
         <Typography>{list.description}</Typography>
       </Box>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={2000}
+        open={!!message}
+        onClose={() => setMessage('')}
+        sx={{ marginBottom: 6 }}
+      >
+        <Alert severity={'success'} variant={'filled'}>
+          {message}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import {
+  Alert,
   Box,
   IconButton,
   List,
@@ -12,11 +13,13 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Snackbar,
   Tooltip,
   Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { KeyedMutator } from 'swr';
 
 interface AllListsContentProps {
@@ -25,16 +28,20 @@ interface AllListsContentProps {
 }
 
 export function AllListsContent({ lists, mutate }: AllListsContentProps) {
+  const [message, setMessage] = useState('');
   const router = useRouter();
   const session = useSession();
   const id_token = session.data?.['id_token'] as string;
 
   const handleShareList = (id: string) => {
-    createShare({ listId: id }, id_token);
+    createShare({ listId: id }, id_token).then(() => {
+      setMessage('Share has been created :)');
+    });
   };
 
   const handleDeleteList = (id: string) => {
     deleteList(id, id_token).then(() => {
+      setMessage('List has been deleted :)');
       mutate();
     });
   };
@@ -52,43 +59,56 @@ export function AllListsContent({ lists, mutate }: AllListsContentProps) {
     );
 
   return (
-    <List sx={{ mt: 2 }}>
-      {lists.items.map((list) => (
-        <ListItem divider={true} key={list.id}>
-          <ListItemButton
-            data-testid="navigate"
-            onClick={() => handleNavigate(list.id)}
-          >
+    <>
+      <List sx={{ mt: 2 }}>
+        {lists.items.map((list) => (
+          <ListItem divider={true} key={list.id}>
+            <ListItemButton
+              data-testid="navigate"
+              onClick={() => handleNavigate(list.id)}
+            >
+              <ListItemIcon>
+                <ChevronRightIcon color={'primary'} />
+              </ListItemIcon>
+              <ListItemText
+                primary={list.name}
+                secondary={list.description}
+              ></ListItemText>
+            </ListItemButton>
             <ListItemIcon>
-              <ChevronRightIcon color={'primary'} />
+              <Tooltip title={'Share List'}>
+                <IconButton
+                  data-testid="share"
+                  onClick={() => handleShareList(list.id)}
+                >
+                  <ShareIcon color={'primary'} />
+                </IconButton>
+              </Tooltip>
             </ListItemIcon>
-            <ListItemText
-              primary={list.name}
-              secondary={list.description}
-            ></ListItemText>
-          </ListItemButton>
-          <ListItemIcon>
-            <Tooltip title={'Share List'}>
-              <IconButton
-                data-testid="share"
-                onClick={() => handleShareList(list.id)}
-              >
-                <ShareIcon color={'primary'} />
-              </IconButton>
-            </Tooltip>
-          </ListItemIcon>
-          <ListItemIcon>
-            <Tooltip title={'Delete List'}>
-              <IconButton
-                data-testid="delete"
-                onClick={() => handleDeleteList(list.id)}
-              >
-                <DeleteIcon color={'error'} />
-              </IconButton>
-            </Tooltip>
-          </ListItemIcon>
-        </ListItem>
-      ))}
-    </List>
+            <ListItemIcon>
+              <Tooltip title={'Delete List'}>
+                <IconButton
+                  data-testid="delete"
+                  onClick={() => handleDeleteList(list.id)}
+                >
+                  <DeleteIcon color={'error'} />
+                </IconButton>
+              </Tooltip>
+            </ListItemIcon>
+          </ListItem>
+        ))}
+      </List>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={2000}
+        open={!!message}
+        onClose={() => setMessage('')}
+        sx={{ marginBottom: 6 }}
+      >
+        <Alert severity={'success'} variant={'filled'}>
+          {message}
+        </Alert>
+      </Snackbar>
+    </>
   );
 }
