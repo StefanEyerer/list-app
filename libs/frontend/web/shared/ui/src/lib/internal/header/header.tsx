@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
 import { signIn, signOut } from 'next-auth/react';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 export interface HeaderProps {
@@ -22,9 +23,11 @@ export function Header({ isAuthenticated, user }: HeaderProps) {
     <AppBar component={'header'} position={'static'}>
       <Toolbar>
         <ModeOutlinedIcon sx={{ mr: 2 }} />
-        <Typography flex={1} variant={'h5'}>
-          List App
-        </Typography>
+        <NextLink href="/">
+          <Typography flex={1} variant={'h5'} sx={{ cursor: 'pointer' }}>
+            List App
+          </Typography>
+        </NextLink>
         {isAuthenticated ? (
           <>
             <Tooltip title={'Show My Lists'}>

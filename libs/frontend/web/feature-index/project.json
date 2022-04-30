@@ -1,0 +1,25 @@
+{
+  "root": "libs/frontend/web/feature-index",
+  "sourceRoot": "libs/frontend/web/feature-index/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend/web/feature-index/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/frontend/web/feature-index"],
+      "options": {
+        "jestConfig": "libs/frontend/web/feature-index/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

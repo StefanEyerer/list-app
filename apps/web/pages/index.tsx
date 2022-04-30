@@ -1,2 +1,2 @@
-import { AllLists } from '@list-app/frontend/web/feature-lists';
-export default AllLists;
+import { Index } from '@list-app/frontend/web/feature-index';
+export default Index;

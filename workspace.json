@@ -8,6 +8,7 @@
     "backend-shared-data-access": "libs/backend/shared/data-access",
     "backend-shared-feature-auth": "libs/backend/shared/feature-auth",
     "frontend-shared-data-access": "libs/frontend/shared/data-access",
+    "frontend-web-feature-index": "libs/frontend/web/feature-index",
     "frontend-web-feature-lists": "libs/frontend/web/feature-lists",
     "frontend-web-feature-public": "libs/frontend/web/feature-public",
     "frontend-web-feature-shares": "libs/frontend/web/feature-shares",

@@ -33,6 +33,9 @@
       "@list-app/frontend/shared/data-access": [
         "libs/frontend/shared/data-access/src/index.ts"
       ],
+      "@list-app/frontend/web/feature-index": [
+        "libs/frontend/web/feature-index/src/index.ts"
+      ],
       "@list-app/frontend/web/feature-lists": [
         "libs/frontend/web/feature-lists/src/index.ts"
       ],
