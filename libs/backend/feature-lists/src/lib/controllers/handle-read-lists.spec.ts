@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import { handleReadLists } from './handle-read-lists';
 
@@ -10,7 +10,7 @@ describe('handleReadLists()', () => {
       status: jest.fn().mockReturnValue({ json: jest.fn() }),
     } as unknown as Response;
 
-    jest.spyOn(ListModel, 'find').mockResolvedValue([{ get: () => 'found' }]);
+    jest.spyOn(prisma.list, 'findMany').mockResolvedValue([{} as any]);
 
     await handleReadLists(req, res);
 
@@ -22,7 +22,7 @@ describe('handleReadLists()', () => {
       status: jest.fn().mockReturnValue({ json: jest.fn() }),
     } as unknown as Response;
 
-    jest.spyOn(ListModel, 'find').mockResolvedValue([]);
+    jest.spyOn(prisma.list, 'findMany').mockResolvedValue([]);
 
     await handleReadLists(req, res);
 

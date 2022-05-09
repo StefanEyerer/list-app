@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel, ShareModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import * as validator from 'express-validator';
 import { handleDeleteList } from './handle-delete-list';
@@ -16,8 +16,8 @@ describe('handleDeleteList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'deleteOne').mockResolvedValue({} as any);
-    jest.spyOn(ShareModel, 'deleteMany').mockResolvedValue({} as any);
+    jest.spyOn(prisma.list, 'deleteMany').mockResolvedValue({} as any);
+    jest.spyOn(prisma.share, 'deleteMany').mockResolvedValue({} as any);
 
     await handleDeleteList(req, res);
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ShareModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
@@ -13,7 +13,9 @@ export async function handleDeleteShares(req: Request, res: Response) {
   try {
     const userId = (req as any)['userId'];
     const ids = req.body['ids'];
-    await ShareModel.deleteMany({ _id: { $in: ids }, user: userId });
+    await prisma.share.deleteMany({
+      where: { id: { in: ids }, userId: userId },
+    });
     res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });

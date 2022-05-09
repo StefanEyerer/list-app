@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
-import { List } from '@list-app/shared/api-interfaces';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
@@ -14,24 +13,22 @@ export async function handleUpdateList(req: Request, res: Response) {
   try {
     const userId = (req as any)['userId'];
     const id = req.params['id'];
-    const list = await ListModel.findOneAndUpdate(
-      { _id: id, user: userId },
-      { ...req.body },
-      { new: true }
-    );
+
+    await prisma.list.updateMany({
+      data: { ...req.body },
+      where: { id: id, userId: userId },
+    });
+    const list = await prisma.list.findFirst({
+      where: { id: id, userId: userId },
+      select: { id: true, name: true, description: true, items: true },
+    });
 
     if (!list) {
       res.status(404).json({ error: 'list not found' });
       return;
     }
 
-    const responsePayload: List = {
-      id: list.get('id', String),
-      name: list.get('name', String),
-      description: list.get('description', String),
-      items: list.get('items', Array),
-    };
-    res.status(200).json(responsePayload);
+    res.status(200).json(list);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

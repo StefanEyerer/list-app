@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ShareModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import * as validator from 'express-validator';
 import { handleReadPublicShare } from './handle-read-public-share';
@@ -16,16 +16,7 @@ describe('handleReadPublicShare()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ShareModel, 'findOne').mockReturnValue({
-      populate: jest.fn().mockResolvedValue({
-        get: () => ({
-          _id: 'someId',
-          name: 'someName',
-          description: 'someDescription',
-          items: [],
-        }),
-      }),
-    } as any);
+    jest.spyOn(prisma.share, 'findFirst').mockResolvedValue({} as any);
 
     await handleReadPublicShare(req, res);
 
@@ -40,9 +31,7 @@ describe('handleReadPublicShare()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ShareModel, 'findOne').mockReturnValue({
-      populate: jest.fn().mockResolvedValue(null),
-    } as any);
+    jest.spyOn(prisma.share, 'findFirst').mockResolvedValue(null);
 
     await handleReadPublicShare(req, res);
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import * as validator from 'express-validator';
 import { handleReadList } from './handle-read-list';
@@ -16,7 +16,7 @@ describe('handleReadList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'findOne').mockResolvedValue({ get: () => 'found' });
+    jest.spyOn(prisma.list, 'findFirst').mockResolvedValue({} as any);
 
     await handleReadList(req, res);
 
@@ -31,7 +31,7 @@ describe('handleReadList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'findOne').mockResolvedValue(null);
+    jest.spyOn(prisma.list, 'findFirst').mockResolvedValue(null);
 
     await handleReadList(req, res);
 

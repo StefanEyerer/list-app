@@ -1,14 +1,10 @@
-import * as mongoose from 'mongoose';
 import app from './app';
-
-const port = process.env.PORT || 3333;
-const databaseUrl = process.env.NX_DATABASE_URL;
 
 startUp();
 
 async function startUp() {
   try {
-    await mongoose.connect(databaseUrl);
+    const port = process.env.PORT || 3333;
     app.listen(port, () => {
       console.log(`App listening on port ${port}`);
     });

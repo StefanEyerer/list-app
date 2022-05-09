@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import * as validator from 'express-validator';
 import { handleCreateList } from './handle-create-list';
@@ -18,9 +18,7 @@ describe('handleCreateList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest
-      .spyOn(ListModel.prototype, 'save')
-      .mockResolvedValue({ get: () => 'saved' });
+    jest.spyOn(prisma.list, 'create').mockResolvedValue({} as any);
 
     await handleCreateList(req, res);
 

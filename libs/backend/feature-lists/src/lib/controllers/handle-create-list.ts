@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
-import { List } from '@list-app/shared/api-interfaces';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
@@ -13,14 +12,11 @@ export async function handleCreateList(req: Request, res: Response) {
 
   try {
     const userId = (req as any)['userId'];
-    const list = await new ListModel({ ...req.body, user: userId }).save();
-    const responsePayload: List = {
-      id: list.get('id', String),
-      name: list.get('name', String),
-      description: list.get('description', String),
-      items: list.get('items', Array),
-    };
-    res.status(201).json(responsePayload);
+    const list = await prisma.list.create({
+      data: { ...req.body, userId: userId },
+      select: { id: true, name: true, description: true, items: true },
+    });
+    res.status(201).json(list);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

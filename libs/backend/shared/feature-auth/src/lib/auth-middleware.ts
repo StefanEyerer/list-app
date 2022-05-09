@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { UserModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { NextFunction, Request, Response } from 'express';
 import { OAuth2Client } from 'google-auth-library';
 
@@ -30,16 +30,20 @@ export async function authMiddleware(
       return;
     }
 
-    const user = await UserModel.findOne({ oidcId: payload.sub });
+    const user = await prisma.user.findFirst({
+      where: { oidcId: payload.sub },
+    });
     if (user) {
-      (req as any)['userId'] = user.get('id', String);
+      (req as any)['userId'] = user.id;
       next();
     } else {
-      const newUser = await new UserModel({
-        oidcId: payload.sub,
-        email: payload.email,
-      }).save();
-      (req as any)['userId'] = newUser.get('id', String);
+      const newUser = await prisma.user.create({
+        data: {
+          oidcId: payload.sub,
+          email: payload.email || '',
+        },
+      });
+      (req as any)['userId'] = newUser.id;
       next();
     }
   } catch (error) {

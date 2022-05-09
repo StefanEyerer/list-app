@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ListModel } from '@list-app/backend/shared/data-access';
+import { prisma } from '@list-app/backend/shared/data-access';
 import { Request, Response } from 'express';
 import * as validator from 'express-validator';
 import { handleUpdateList } from './handle-update-list';
@@ -19,9 +19,8 @@ describe('handleUpdateList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest
-      .spyOn(ListModel, 'findOneAndUpdate')
-      .mockResolvedValue({ get: () => 'updated' });
+    jest.spyOn(prisma.list, 'updateMany').mockResolvedValue({} as any);
+    jest.spyOn(prisma.list, 'findFirst').mockResolvedValue({} as any);
 
     await handleUpdateList(req, res);
 
@@ -39,7 +38,8 @@ describe('handleUpdateList()', () => {
     jest
       .spyOn(validator, 'validationResult')
       .mockReturnValue({ isEmpty: () => true } as any);
-    jest.spyOn(ListModel, 'findOneAndUpdate').mockResolvedValue(null);
+    jest.spyOn(prisma.list, 'updateMany').mockResolvedValue({} as any);
+    jest.spyOn(prisma.list, 'findFirst').mockResolvedValue(null);
 
     await handleUpdateList(req, res);
 
