@@ -1,5 +1,4 @@
 {
-  "root": "libs/frontend/web/feature-index",
   "sourceRoot": "libs/frontend/web/feature-index/src",
   "projectType": "library",
   "tags": [],
@@ -17,7 +16,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/frontend/web/feature-index"],
       "options": {
-        "jestConfig": "libs/frontend/web/feature-index/jest.config.js",
+        "jestConfig": "libs/frontend/web/feature-index/jest.config.ts",
         "passWithNoTests": true
       }
     }

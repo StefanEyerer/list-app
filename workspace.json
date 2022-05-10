@@ -13,8 +13,6 @@
     "frontend-web-feature-public": "libs/frontend/web/feature-public",
     "frontend-web-feature-shares": "libs/frontend/web/feature-shares",
     "frontend-web-shared-ui": "libs/frontend/web/shared/ui",
-    "mobile": "apps/mobile",
-    "mobile-e2e": "apps/mobile-e2e",
     "shared-api-interfaces": "libs/shared/api-interfaces",
     "web": "apps/web",
     "web-e2e": "apps/web-e2e"

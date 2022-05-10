@@ -1,5 +1,4 @@
 {
-  "root": "libs/frontend/web/feature-public",
   "sourceRoot": "libs/frontend/web/feature-public/src",
   "projectType": "library",
   "tags": [],
@@ -17,7 +16,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/frontend/web/feature-public"],
       "options": {
-        "jestConfig": "libs/frontend/web/feature-public/jest.config.js",
+        "jestConfig": "libs/frontend/web/feature-public/jest.config.ts",
         "passWithNoTests": true
       }
     }

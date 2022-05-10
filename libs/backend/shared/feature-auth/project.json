@@ -1,5 +1,4 @@
 {
-  "root": "libs/backend/shared/feature-auth",
   "sourceRoot": "libs/backend/shared/feature-auth/src",
   "targets": {
     "lint": {
@@ -13,7 +12,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/backend/shared/feature-auth"],
       "options": {
-        "jestConfig": "libs/backend/shared/feature-auth/jest.config.js",
+        "jestConfig": "libs/backend/shared/feature-auth/jest.config.ts",
         "passWithNoTests": true
       }
     }

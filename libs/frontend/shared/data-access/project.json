@@ -1,5 +1,4 @@
 {
-  "root": "libs/frontend/shared/data-access",
   "sourceRoot": "libs/frontend/shared/data-access/src",
   "targets": {
     "lint": {
@@ -13,7 +12,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/frontend/shared/data-access"],
       "options": {
-        "jestConfig": "libs/frontend/shared/data-access/jest.config.js",
+        "jestConfig": "libs/frontend/shared/data-access/jest.config.ts",
         "passWithNoTests": true
       }
     }

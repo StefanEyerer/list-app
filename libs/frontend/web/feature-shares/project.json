@@ -1,5 +1,4 @@
 {
-  "root": "libs/frontend/web/feature-shares",
   "sourceRoot": "libs/frontend/web/feature-shares/src",
   "projectType": "library",
   "tags": [],
@@ -17,7 +16,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/frontend/web/feature-shares"],
       "options": {
-        "jestConfig": "libs/frontend/web/feature-shares/jest.config.js",
+        "jestConfig": "libs/frontend/web/feature-shares/jest.config.ts",
         "passWithNoTests": true
       }
     }

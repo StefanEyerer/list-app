@@ -1,5 +1,4 @@
 {
-  "root": "libs/backend/feature-public",
   "sourceRoot": "libs/backend/feature-public/src",
   "targets": {
     "lint": {
@@ -13,7 +12,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/backend/feature-public"],
       "options": {
-        "jestConfig": "libs/backend/feature-public/jest.config.js",
+        "jestConfig": "libs/backend/feature-public/jest.config.ts",
         "passWithNoTests": true
       }
     }
