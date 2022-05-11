@@ -1,1 +1,3 @@
-export const getGreeting = () => cy.get('h1');
+export const getIndexHeading = () => cy.get('[data-cy="index-heading"]');
+export const getPublicSharesHeading = () =>
+  cy.get('[data-cy="public-shares-heading"]');

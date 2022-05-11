@@ -1,13 +1,16 @@
-import { getGreeting } from '../support/app.po';
+import { getIndexHeading, getPublicSharesHeading } from '../support/app.po';
 
-describe('web', () => {
-  beforeEach(() => cy.visit('/'));
+describe('Web App', () => {
+  it('should display index heading', () => {
+    cy.visit('/');
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+    getIndexHeading().contains('Welcome To List App :)');
+  });
+  it('should display public shares heading', () => {
+    cy.visit('/public/shares');
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome web');
+    getPublicSharesHeading().contains(
+      'Enter The Access Key For A Shared List To View It'
+    );
   });
 });

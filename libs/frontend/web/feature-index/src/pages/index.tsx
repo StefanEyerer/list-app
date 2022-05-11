@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 export function Index() {
   return (
     <Box>
-      <Typography variant={'h4'} sx={{ mb: 2 }}>
+      <Typography variant={'h4'} sx={{ mb: 2 }} data-cy="index-heading">
         Welcome To List App :)
       </Typography>
       <Typography variant={'body1'} sx={{ my: 1 }}>
