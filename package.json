@@ -10,7 +10,8 @@
     "lint": "nx lint",
     "test": "nx test",
     "nx-run": "nx run",
-    "nx-run-many": "nx run-many"
+    "nx-run-many": "nx run-many",
+    "prisma": "prisma generate --schema=./apps/api/prisma/schema.prisma"
   },
   "private": true,
   "dependencies": {
