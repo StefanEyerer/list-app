@@ -1,11 +1,10 @@
 import { List } from '@list-app/shared/api-interfaces';
 import useSWR from 'swr';
-import { apiUrl } from './internal/api-url';
 import { fetcher } from './internal/fetcher';
 
 export function useList(id: string, token: string) {
   const { data, error, isValidating, mutate } = useSWR<List>(
-    [`${apiUrl}/lists/${id}`, token],
+    [`/lists/${id}`, token],
     fetcher
   );
 

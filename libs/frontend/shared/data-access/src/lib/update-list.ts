@@ -1,7 +1,12 @@
 import { UpdateListBody } from '@list-app/shared/api-interfaces';
-import { apiUrl } from './internal/api-url';
+import { getApiUrl } from './internal/get-api-url';
 
-export function updateList(id: string, body: UpdateListBody, token: string) {
+export async function updateList(
+  id: string,
+  body: UpdateListBody,
+  token: string
+) {
+  const apiUrl = await getApiUrl();
   return fetch(`${apiUrl}/lists/${id}`, {
     method: 'PUT',
     headers: {

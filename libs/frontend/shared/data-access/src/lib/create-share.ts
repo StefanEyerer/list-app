@@ -1,7 +1,8 @@
 import { CreateShareBody } from '@list-app/shared/api-interfaces';
-import { apiUrl } from './internal/api-url';
+import { getApiUrl } from './internal/get-api-url';
 
-export function createShare(body: CreateShareBody, token: string) {
+export async function createShare(body: CreateShareBody, token: string) {
+  const apiUrl = await getApiUrl();
   return fetch(`${apiUrl}/shares`, {
     method: 'POST',
     headers: {

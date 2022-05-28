@@ -1,7 +1,8 @@
 import { CreateListBody } from '@list-app/shared/api-interfaces';
-import { apiUrl } from './internal/api-url';
+import { getApiUrl } from './internal/get-api-url';
 
-export function createList(body: CreateListBody, token: string) {
+export async function createList(body: CreateListBody, token: string) {
+  const apiUrl = await getApiUrl();
   return fetch(`${apiUrl}/lists`, {
     method: 'POST',
     headers: {
