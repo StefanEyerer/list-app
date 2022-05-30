@@ -1,5 +1,5 @@
 import { createShare, deleteList } from '@list-app/frontend/shared/data-access';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { AllListsContent } from './all-lists-content';
 
 const mockRouter = { push: jest.fn() };
@@ -47,7 +47,7 @@ describe('AllListsContent', () => {
     expect(screen.queryByText('Name 2')).toBeTruthy();
     expect(screen.queryByText('Description 2')).toBeTruthy();
   });
-  it('should navigate to list if list is clicked', () => {
+  it('should navigate to list if list is clicked', async () => {
     const someLists = {
       items: [
         {
@@ -58,13 +58,15 @@ describe('AllListsContent', () => {
         },
       ],
     };
-
     render(<AllListsContent lists={someLists} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('navigate'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('navigate'));
+    });
 
     expect(mockRouter.push).toHaveBeenCalledWith('/lists/1');
   });
-  it('should share list if share icon is clicked', () => {
+  it('should share list if share icon is clicked', async () => {
     const someLists = {
       items: [
         {
@@ -75,13 +77,15 @@ describe('AllListsContent', () => {
         },
       ],
     };
-
     render(<AllListsContent lists={someLists} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('share'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('share'));
+    });
 
     expect(createShare).toHaveBeenCalledWith({ listId: '1' }, 'someToken');
   });
-  it('should delete list if delete icon is clicked', () => {
+  it('should delete list if delete icon is clicked', async () => {
     const someLists = {
       items: [
         {
@@ -92,9 +96,11 @@ describe('AllListsContent', () => {
         },
       ],
     };
-
     render(<AllListsContent lists={someLists} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('delete'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('delete'));
+    });
 
     expect(deleteList).toHaveBeenCalledWith('1', 'someToken');
   });

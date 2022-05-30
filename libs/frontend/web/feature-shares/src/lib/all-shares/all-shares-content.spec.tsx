@@ -1,5 +1,5 @@
 import { deleteShare } from '@list-app/frontend/shared/data-access';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { AllSharesContent } from './all-shares-content';
 
 Object.assign(navigator, {
@@ -56,7 +56,7 @@ describe('AllSharesContent', () => {
     expect(screen.queryByText('Name 2')).toBeTruthy();
     expect(screen.queryByText('Description 2')).toBeTruthy();
   });
-  it('should copy access key if copy icon is clicked', () => {
+  it('should copy access key if copy icon is clicked', async () => {
     const someShares = {
       items: [
         {
@@ -70,13 +70,15 @@ describe('AllSharesContent', () => {
         },
       ],
     };
-
     render(<AllSharesContent shares={someShares} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('copyAccessKey'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('copyAccessKey'));
+    });
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('SomeAccessKey');
   });
-  it('should copy public share link if link icon is clicked', () => {
+  it('should copy public share link if link icon is clicked', async () => {
     const someShares = {
       items: [
         {
@@ -90,15 +92,17 @@ describe('AllSharesContent', () => {
         },
       ],
     };
-
     render(<AllSharesContent shares={someShares} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('copyShareLink'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('copyShareLink'));
+    });
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
       `${window.location.origin}/public/shares/SomeAccessKey`
     );
   });
-  it('should delete share if delete icon is clicked', () => {
+  it('should delete share if delete icon is clicked', async () => {
     const someShares = {
       items: [
         {
@@ -112,9 +116,11 @@ describe('AllSharesContent', () => {
         },
       ],
     };
-
     render(<AllSharesContent shares={someShares} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('delete'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('delete'));
+    });
 
     expect(deleteShare).toHaveBeenCalledWith('1', 'someToken');
   });

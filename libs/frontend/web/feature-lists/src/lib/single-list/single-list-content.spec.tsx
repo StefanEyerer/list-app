@@ -1,5 +1,5 @@
 import { updateList } from '@list-app/frontend/shared/data-access';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { SingleListContent } from './single-list-content';
 
 const mockSession = { data: { id_token: 'someToken' } };
@@ -40,16 +40,18 @@ describe('SingleListContent', () => {
     expect(screen.queryByText('Text 11')).toBeTruthy();
     expect(screen.queryByText('Text 22')).toBeTruthy();
   });
-  it('should delete list item if delete icon is clicked', () => {
+  it('should delete list item if delete icon is clicked', async () => {
     const someList = {
       id: '1',
       name: 'Name 1',
       description: 'Description 1',
       items: [{ id: '11', text: 'Text 11' }],
     };
-
     render(<SingleListContent list={someList} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('delete'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('delete'));
+    });
 
     expect(updateList).toHaveBeenCalledWith('1', { items: [] }, 'someToken');
   });

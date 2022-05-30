@@ -78,6 +78,7 @@
     "jest": "~28.1.0",
     "jest-circus": "~28.1.0",
     "jest-environment-jsdom": "~28.1.0",
+    "jest-mock-extended": "~2.0.6",
     "nx": "14.1.4",
     "prettier": "~2.6.0",
     "prisma": "~3.14.0",

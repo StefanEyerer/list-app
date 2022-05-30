@@ -1,5 +1,5 @@
 import { updateList } from '@list-app/frontend/shared/data-access';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { SingleListHeader } from './single-list-header';
 
 const mockMath = Object.create(global.Math);
@@ -28,19 +28,21 @@ describe('SingleListHeader', () => {
     expect(screen.queryByText('Name 1')).toBeTruthy();
     expect(screen.queryByText('Description 1')).toBeTruthy();
   });
-  it('should update list if button is clicked and text for new item is provided', () => {
+  it('should update list if button is clicked and text for new item is provided', async () => {
     const someList = {
       id: '1',
       name: 'Name 1',
       description: 'Description 1',
       items: [],
     };
-
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
-    fireEvent.input(screen.getByTestId('text'), {
-      target: { value: 'Some Text' },
+
+    await act(async () => {
+      fireEvent.input(screen.getByTestId('text'), {
+        target: { value: 'Some Text' },
+      });
+      fireEvent.click(screen.getByTestId('add'));
     });
-    fireEvent.click(screen.getByTestId('add'));
 
     expect(updateList).toHaveBeenCalledWith(
       '1',
@@ -48,16 +50,18 @@ describe('SingleListHeader', () => {
       'someToken'
     );
   });
-  it('should not update list if button is clicked and no text for new item is provided', () => {
+  it('should not update list if button is clicked and no text for new item is provided', async () => {
     const someList = {
       id: '1',
       name: 'Name 1',
       description: 'Description 1',
       items: [],
     };
-
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
-    fireEvent.click(screen.getByTestId('add'));
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('add'));
+    });
 
     expect(updateList).not.toHaveBeenCalled();
   });

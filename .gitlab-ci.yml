@@ -43,7 +43,7 @@ unit test:
     - npm ci --cache .npm --prefer-offline
     - npm run prisma
   script:
-    - DATABASE_URL=mongo://some_url npm run nx-run-many -- --target=test --all
+    - npm run nx-run-many -- --target=test --all
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'

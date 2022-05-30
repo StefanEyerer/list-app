@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { AllListsHeader } from './all-lists-header';
 
 const mockRouter = { push: jest.fn() };
@@ -13,10 +13,12 @@ describe('AllListsHeader', () => {
 
     expect(screen.queryByText('My Lists')).toBeTruthy();
   });
-  it('should navigate to create list if button is clicked', () => {
+  it('should navigate to create list if button is clicked', async () => {
     render(<AllListsHeader />);
 
-    fireEvent.click(screen.getByTestId('navigate'));
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('navigate'));
+    });
 
     expect(mockRouter.push).toHaveBeenCalledWith('/lists/create');
   });

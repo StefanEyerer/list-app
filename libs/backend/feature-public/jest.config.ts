@@ -12,4 +12,5 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../../coverage/libs/backend/feature-public',
   preset: '../../../jest.preset.ts',
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
 };
