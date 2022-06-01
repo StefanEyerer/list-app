@@ -15,7 +15,7 @@ describe('SingleListHeader', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it('should render name and description of list', () => {
+  it('should render name of list', () => {
     const someList = {
       id: '1',
       name: 'Name 1',
@@ -26,7 +26,6 @@ describe('SingleListHeader', () => {
     render(<SingleListHeader list={someList} mutate={jest.fn()} />);
 
     expect(screen.queryByText('Name 1')).toBeTruthy();
-    expect(screen.queryByText('Description 1')).toBeTruthy();
   });
   it('should update list if button is clicked and text for new item is provided', async () => {
     const someList = {

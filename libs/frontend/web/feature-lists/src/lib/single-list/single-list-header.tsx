@@ -9,6 +9,7 @@ import {
   Snackbar,
   TextField,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import NextLink from 'next/link';
@@ -25,6 +26,7 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
   const [text, setText] = useState('');
   const session = useSession();
   const id_token = session.data?.['id_token'] as string;
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   const handleAddItem = (event: BaseSyntheticEvent) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          flexDirection: isMobile ? 'column' : 'row',
           my: 2,
         }}
       >
@@ -55,7 +58,7 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
         <Box
           component={'form'}
           onSubmit={handleAddItem}
-          sx={{ display: 'flex', alignItems: 'center' }}
+          sx={{ display: 'flex', alignItems: 'center', mt: isMobile ? 2 : 0 }}
         >
           <TextField
             inputProps={{ 'data-testid': 'text' }}
@@ -69,9 +72,11 @@ export function SingleListHeader({ list, mutate }: SingleListHeaderProps) {
           </IconButton>
         </Box>
       </Box>
-      <Box sx={{ my: 2 }}>
-        <Typography>{list.description}</Typography>
-      </Box>
+      {!isMobile ?? (
+        <Box sx={{ my: 2 }}>
+          <Typography>{list.description}</Typography>
+        </Box>
+      )}
       <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         autoHideDuration={2000}
