@@ -1,5 +1,4 @@
-import { Box, Typography } from '@mui/material';
-import CopyrightIcon from '@mui/icons-material/Copyright';
+import { Box, Link, Typography } from '@mui/material';
 
 export function Footer() {
   return (
@@ -12,9 +11,10 @@ export function Footer() {
         paddingY={2}
         variant={'body1'}
       >
-        Copyright
-        <CopyrightIcon fontSize={'small'} sx={{ mx: 1 }} />
-        Stefan Eyerer 2022
+        Copyright &copy; 2022 &nbsp;
+        <Link href="https://github.com/StefanEyerer/list-app" target="_blank">
+          Stefan Eyerer
+        </Link>
       </Typography>
     </Box>
   );

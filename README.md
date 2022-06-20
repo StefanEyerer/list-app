@@ -3,6 +3,8 @@
 This is a simple List App that allows you to create all kinds of lists.
 These lists can then be shared by creating a readonly public share link.
 
+The application is currently deployed [here](https://lizti.herokuapp.com/).
+
 ## Getting Started
 
 ### Prerequisites

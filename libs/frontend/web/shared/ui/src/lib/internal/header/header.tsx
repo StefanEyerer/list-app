@@ -1,6 +1,7 @@
 import {
   AppBar,
   Avatar,
+  Box,
   Button,
   Toolbar,
   Tooltip,
@@ -24,9 +25,14 @@ export function Header({ isAuthenticated, user }: HeaderProps) {
       <Toolbar>
         <ModeOutlinedIcon sx={{ mr: 2 }} />
         <NextLink href="/">
-          <Typography flex={1} variant={'h5'} sx={{ cursor: 'pointer' }}>
-            List App
-          </Typography>
+          <Box flex={1}>
+            <Typography
+              variant={'h5'}
+              sx={{ cursor: 'pointer', width: 'fit-content' }}
+            >
+              List App
+            </Typography>
+          </Box>
         </NextLink>
         {isAuthenticated ? (
           <>
